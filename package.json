@@ -4,8 +4,7 @@
   "description": "node note book",
   "main": "index.js",
   "scripts": {
-    "start": "echo \"Error: no test specified\" && exit 1",
-    "test": "node index.js"
+    "start": "nodemon --inspect index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +17,8 @@
   "author": "nineSean",
   "license": "ISC",
   "devDependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "nodemon": "^1.11.0"
   },
   "dependencies": {
     "axios": "^0.16.1"
