@@ -1,0 +1,26 @@
+{
+  "name": "pure-node-notebook",
+  "version": "1.0.0",
+  "description": "node note book",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Error: no test specified\" && exit 1",
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "keywords": [
+    "node",
+    "notebook"
+  ],
+  "author": "nineSean",
+  "license": "ISC",
+  "devDependencies": {
+    "lodash": "^4.17.4"
+  },
+  "dependencies": {
+    "axios": "^0.16.1"
+  }
+}
