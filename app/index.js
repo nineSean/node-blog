@@ -1,5 +1,6 @@
 // 主要核心逻辑入口
 const fs = require('fs')
+const path = require('path')
 class App {
   constructor() {
 
@@ -9,8 +10,10 @@ class App {
     return (request, response) => {
 
       let { url } = request
+      const staticPrefix = path.resolve(process.cwd(),'public')
       let staticFunc = (url) => {
-        fs.readFile(`./public${url}`, 'utf-8', (error, data) => {
+        let _path = path.resolve(staticPrefix,`.${url}`)
+        fs.readFile(_path, 'utf-8', (error, data) => {
           response.end(data)
         })
       }
