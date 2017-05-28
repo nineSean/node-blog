@@ -8,21 +8,16 @@ class App {
     //初始化工作
     return (request, response) => {
 
-
       let { url } = request
-      if (url === '/') {
-        fs.readFile('./public/index.html', 'utf-8', (error, data) => {
-          response.end(data)
-        })
-      } else if (url === '/css/index.css') {
-        fs.readFile('./public/css/index.css', 'utf-8', (error, data) => {
-          response.end(data)
-        })
-      } else if (url === '/js/index.js') {
-        fs.readFile('./public/js/index.js', 'utf-8', (error, data) => {
+      let staticFunc = (url) => {
+        fs.readFile(`./public${url}`, 'utf-8', (error, data) => {
           response.end(data)
         })
       }
+      if (url === '/') {
+        staticFunc('/index.html')
+      }
+      staticFunc(url)
     }
   }
 }
