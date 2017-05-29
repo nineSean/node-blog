@@ -4,6 +4,7 @@ setTimeout(
     url: '/user.action',
     method: 'get',
     success: function(arr) {
+      debugger
       let liStr = JSON.parse(arr).map(function(ele){
         return '<li>' + ele + '</li>'
       }).join('')

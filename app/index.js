@@ -21,10 +21,14 @@ class App {
       let body
       if (url.match('action')) {
         body = JSON.stringify(apiServer(url))
+        response.writeHead(200, 'resolve ok', {
+          'X-powered-by': 'Node.js',
+          'Content-Type': 'application/json'
+        })
       } else {
         body = staticServer(url)
+      response.writeHead(200, 'resolve ok', {'X-powered-by': 'Node.js',})
       }
-      response.writeHead(200, 'resolve ok', { 'X-powered-by': 'Node.js' })
       response.end(body)
     }
   }
