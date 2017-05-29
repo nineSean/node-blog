@@ -4,7 +4,11 @@
 
 let apiServer = url => {
 
-  return ['messi','neymar','silva']
+  let apiMap = {
+    '/user.action': ['sean', 28, 'male'],
+    '/list.action': ['nike', 'adidas', 'puma']
+  }
+  return apiMap[url]
 }
 
 module.exports = apiServer

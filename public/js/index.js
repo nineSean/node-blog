@@ -4,8 +4,7 @@ setTimeout(
     url: '/user.action',
     method: 'get',
     success: function(arr) {
-      debugger
-      let liStr = JSON.parse(arr).map(function(ele){
+      let liStr = arr.map(function(ele){
         return '<li>' + ele + '</li>'
       }).join('')
       $('#root').html(liStr)
@@ -14,3 +13,18 @@ setTimeout(
       console.log(error)
     }
   }), 1000)
+
+setTimeout(
+  $.ajax({
+    url: '/list.action',
+    method: 'get',
+    success: function(arr) {
+      let liStr = arr.map(function(ele){
+        return '<li>' + ele + '</li>'
+      }).join('')
+      $('#list').html(liStr)
+    },
+    error: function(error) {
+      console.log(error)
+    }
+  }), 100000)
