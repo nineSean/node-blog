@@ -4,7 +4,7 @@
 
 let apiServer = url => {
 
-  return 'hello sean'
+  return 'ajax resolve'
 }
 
 module.exports = apiServer
