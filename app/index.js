@@ -18,9 +18,9 @@ class App {
           url = '/index.html'
         }
         let _path = getPath(url)
-        fs.readFile(_path,'binary' , (error, data) => {
-          if(error) data = `NOT FOUND ${error.stack}`
-          response.end(data,'binary')
+        fs.readFile(_path, (error, data) => {
+          if (error) data = `NOT FOUND ${error.stack}`
+          response.end(data)
         })
       }
       staticFunc(url)
