@@ -19,16 +19,15 @@ class App {
     return (request, response) => {
       let { url } = request
       let body
+      let headers = {}
       if (url.match('action')) {
         body = JSON.stringify(apiServer(url))
-        response.writeHead(200, 'resolve ok', {
-          'X-powered-by': 'Node.js',
-          'Content-Type': 'application/json'
-        })
+        headers = {'Content-Type': 'application/json'}
       } else {
         body = staticServer(url)
-      response.writeHead(200, 'resolve ok', {'X-powered-by': 'Node.js',})
       }
+      let finalHeaders = Object.assign(headers, { 'X-powered-by': 'Node.js', })
+      response.writeHead(200,'resolve ok',finalHeaders)
       response.end(body)
     }
   }
