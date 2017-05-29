@@ -10,9 +10,11 @@ class App {
     return (request, response) => {
 
       let { url } = request
-      const staticPrefix = path.resolve(process.cwd(),'public')
+      let getPath = (url)=>{
+        return path.resolve(process.cwd(),'public',`.${url}`)
+      }
       let staticFunc = (url) => {
-        let _path = path.resolve(staticPrefix,`.${url}`)
+        let _path = getPath(url)
         fs.readFile(_path, 'utf-8', (error, data) => {
           response.end(data)
         })
