@@ -12,15 +12,14 @@
   },
   "keywords": [
     "node",
-    "notebook"
+    "notebook",
+    "blog"
   ],
   "author": "nineSean",
   "license": "ISC",
   "devDependencies": {
-    "lodash": "^4.17.4",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "axios": "^0.16.1"
   }
 }
