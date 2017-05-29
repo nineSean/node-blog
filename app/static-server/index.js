@@ -2,9 +2,13 @@ const path = require('path')
 const fs = require('fs')
 let getPath = url => path.resolve(process.cwd(), 'public', `.${url}`)
 let staticFunc = url => {
-  if (url === '/') {
-    url = '/index.html'
+
+  let map = {
+    '/': '/index.html',
+    '/about': '/about.html',
+    '/list': '/list.html',
   }
+  url = map[url] || url
   let _path = getPath(url)
   let body = ''
   try {
