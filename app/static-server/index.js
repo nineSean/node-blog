@@ -1,3 +1,7 @@
+/*
+* static server
+*/
+
 const path = require('path')
 const fs = require('fs')
 let getPath = url => path.resolve(process.cwd(), 'public', `.${url}`)
