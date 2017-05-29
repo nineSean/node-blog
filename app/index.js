@@ -12,6 +12,7 @@ class App {
 
       let { url } = request
       let body = staticServer(url)
+      response.writeHead(200,'resolve ok',{'X-powered-by':'Node.js'})
       response.end(body)
     }
   }

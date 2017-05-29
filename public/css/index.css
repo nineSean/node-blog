@@ -2,10 +2,6 @@ body {
     background-color: #ddd;
 }
 
-.nav {
-    display: inline-block;
-}
-
-.nav>img:first-child {
+img:first-child {
     width: 100px;
 }
