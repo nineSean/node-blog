@@ -1,6 +1,7 @@
 // 主要核心逻辑入口
 const fs = require('fs')
 const path = require('path')
+const staticServer = require('./static-server')
 class App {
   constructor() {
 
@@ -10,20 +11,8 @@ class App {
     return (request, response) => {
 
       let { url } = request
-      let getPath = (url) => {
-        return path.resolve(process.cwd(), 'public', `.${url}`)
-      }
-      let staticFunc = (url) => {
-        if (url === '/') {
-          url = '/index.html'
-        }
-        let _path = getPath(url)
-        fs.readFile(_path, (error, data) => {
-          if (error) data = `NOT FOUND ${error.stack}`
-          response.end(data)
-        })
-      }
-      staticFunc(url)
+      let body = staticServer(url)
+      response.end(body)
     }
   }
 }
