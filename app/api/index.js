@@ -4,7 +4,7 @@
 
 let apiServer = url => {
 
-  return 'ajax resolve'
+  return ['messi','neymar','silva']
 }
 
 module.exports = apiServer

@@ -3,8 +3,11 @@ setTimeout(
   $.ajax({
     url: '/user.action',
     method: 'get',
-    success: function(data) {
-      $('#root').html(data)
+    success: function(arr) {
+      let liStr = JSON.parse(arr).map(function(ele){
+        return '<li>' + ele + '</li>'
+      }).join('')
+      $('#root').html(liStr)
     },
     error: function(error) {
       console.log(error)

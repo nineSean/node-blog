@@ -20,7 +20,7 @@ class App {
       let { url } = request
       let body
       if (url.match('action')) {
-        body = apiServer(url)
+        body = JSON.stringify(apiServer(url))
       } else {
         body = staticServer(url)
       }
