@@ -3,12 +3,15 @@
  */
 
 let apiServer = url => {
-
-  let apiMap = {
-    '/user.action': ['sean', 28, 'male'],
-    '/list.action': ['nike', 'adidas', 'puma']
-  }
-  return apiMap[url]
+  return Promise.resolve({
+    then: (resolve, reject) => {
+      let apiMap = {
+        '/user.action': ['sean', 28, 'male'],
+        '/list.action': ['nike', 'adidas', 'puma']
+      }
+      resolve(apiMap[url])
+    }
+  })
 }
 
 module.exports = apiServer
