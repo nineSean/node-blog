@@ -18,24 +18,24 @@ class App {
     //初始化工作
     return (request, response) => {
       let { url } = request
-      let body
-      let headers = {}
-      if (url.match('action')) {
-        apiServer(url).then(body => {
-          body = JSON.stringify(body)
-          headers = { 'Content-Type': 'application/json' }
-          let finalHeaders = Object.assign(headers, { 'X-powered-by': 'Node.js', })
-          response.writeHead(200, 'resolve ok', finalHeaders)
-          response.end(body)
-        })
-      } else {
-        staticServer(url).then((body) => {
-          let finalHeaders = Object.assign(headers, { 'X-powered-by': 'Node.js', })
-          response.writeHead(200, 'resolve ok', finalHeaders)
-          response.end(body)
-        })
-
-      }
+      apiServer(url).then(data => {
+        if (!data) {
+          return staticServer(url)
+        } else {
+          return data
+        }
+      }).then(data => {
+        let body
+        let finalHeaders = { 'X-powered-by': 'Node.js' }
+        if (data instanceof Buffer) {
+          body = data
+        } else {
+          finalHeaders = Object.assign(finalHeaders, { 'Content-Type': 'application/json' })
+          body = JSON.stringify(data)
+        }
+        response.writeHead(200, 'resolve ok', finalHeaders)
+        response.end(body)
+      })
     }
   }
 }
