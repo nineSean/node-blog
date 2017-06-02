@@ -1,10 +1,9 @@
-
-setTimeout(
+setTimeout(() => {
   $.ajax({
     url: '/user.action',
     method: 'get',
     success: function(arr) {
-      let liStr = arr.map(function(ele){
+      let liStr = arr.map(function(ele) {
         return '<li>' + ele + '</li>'
       }).join('')
       $('#root').html(liStr)
@@ -12,9 +11,8 @@ setTimeout(
     error: function(error) {
       console.log(error)
     }
-  }), 1000)
+  })
 
-setTimeout(
   $.ajax({
     url: '/list.action',
     method: 'post',
@@ -22,7 +20,7 @@ setTimeout(
       name: 'sean'
     },
     success: function(arr) {
-      let liStr = arr.map(function(ele){
+      let liStr = arr.map(function(ele) {
         return '<li>' + ele + '</li>'
       }).join('')
       $('#list').html(liStr)
@@ -30,4 +28,5 @@ setTimeout(
     error: function(error) {
       console.log(error)
     }
-  }), 100000)
+  })
+}, 1000)

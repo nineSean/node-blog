@@ -17,8 +17,8 @@ class App {
   initServer() {
     //初始化工作
     return (request, response) => {
-      let { url } = request
-      apiServer(url).then(data => {
+      let { url, method } = request
+      apiServer(request).then(data => {
         if (!data) {
           return staticServer(url)
         } else {
