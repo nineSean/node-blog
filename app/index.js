@@ -10,6 +10,7 @@ const fs = require('fs')
 const path = require('path')
 const staticServer = require('./static-server')
 const apiServer = require('./api')
+const urlParser = require('./url-parser')
 class App {
   constructor() {
 
@@ -18,9 +19,16 @@ class App {
     //初始化工作
     return (request, response) => {
       let { url, method } = request
-      apiServer(request).then(data => {
+      request.context = {
+        body: '',
+        query: {},
+        method: 'get'
+      }
+      urlParser(request).then(() => {
+        return apiServer(request)
+      }).then(data => {
         if (!data) {
-          return staticServer(url)
+          return staticServer(request)
         } else {
           return data
         }

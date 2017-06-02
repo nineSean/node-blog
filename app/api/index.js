@@ -3,7 +3,7 @@
  */
 
 let apiServer = (request) => {
-  let { url, method } = request
+  let { url, method, context } = request
   let apiMap = {
     '/user.action': ['sean', 28, 'male'],
     '/list.action': ['nike', 'adidas', 'puma']
@@ -12,14 +12,8 @@ let apiServer = (request) => {
   if (method === 'get') {
     return Promise.resolve(apiMap[url])
   } else {
-    return new Promise((resolve, reject) => {
-      let data = ''
-      request.on('data', (chunk) => {
-        data += chunk
-      }).on('end', () => {
-        resolve(JSON.parse(data))
-      })
-    })
+    let { body } = context
+    return Promise.resolve(body)
   }
 }
 
