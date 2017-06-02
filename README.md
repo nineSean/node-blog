@@ -27,3 +27,13 @@ git checkout step-3
 npm i
 npm start
 ```
+
+## step-4 引入stream处理post请求，引入Promise链接static-server与api-server
+
+引入Promise/url/querystring架构项目
+抽象request数据的context模型中间件url-parser
+```
+git checkout step-4
+npm i
+npm start
+```
