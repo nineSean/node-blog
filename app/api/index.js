@@ -17,7 +17,7 @@ let apiServer = (request) => {
       request.on('data', (chunk) => {
         data += chunk
       }).on('end', () => {
-        resolve(data)
+        resolve(JSON.parse(data))
       })
     })
   }
