@@ -19,11 +19,6 @@ class App {
     //初始化工作
     return (request, response) => {
       let { url, method } = request
-      request.context = {
-        body: '',
-        query: {},
-        method: 'get'
-      }
       let context = {
         req: request,
         reqCtx: {
@@ -42,15 +37,9 @@ class App {
       }).then(() => {
         return staticServer(context)
       }).then(() => {
-        let { body } = context.resCtx
-        let finalHeaders = { 'X-powered-by': 'Node.js' }
-        // if (data instanceof Buffer) {
-        //   body = data
-        // } else {
-        //   finalHeaders = Object.assign(finalHeaders, { 'Content-Type': 'application/json' })
-        //   body = JSON.stringify(data)
-        // }
-        // response.writeHead(200, 'resolve ok', finalHeaders)
+        let { body,headers } = context.resCtx
+        let base = { 'X-powered-by': 'Node.js' }
+        response.writeHead(200, 'resolve ok', Object.assign(base, headers))
         response.end(body)
       })
 
