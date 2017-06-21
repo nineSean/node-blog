@@ -8,12 +8,26 @@
 // 主要核心逻辑入口
 const fs = require('fs')
 const path = require('path')
-const staticServer = require('./static-server')
-const apiServer = require('./api-server')
-const urlParser = require('./url-parser')
+
 class App {
   constructor() {
-
+    this.middlewareArr = []
+      //设计一个空的Promise
+    this.middlewareChain = Promise.resolve()
+  }
+  use(middleware) {
+      this.middlewareArr.push(middleware)
+    }
+    //创建Promise链
+  composeMiddleware(context) {
+    let { middlewareArr } = this
+    //根据中间件数组 创建Promise链条
+    for (let middleware of middlewareArr) {
+      this.middlewareChain = this.middlewareChain.then(() => {
+        return middleware(context)
+      })
+    }
+    return this.middlewareChain
   }
   initServer() {
     //初始化工作
@@ -32,17 +46,13 @@ class App {
         }
       }
 
-      urlParser(context).then(() => {
-        return apiServer(context)
-      }).then(() => {
-        return staticServer(context)
-      }).then(() => {
-        let { body,headers } = context.resCtx
-        let base = { 'X-powered-by': 'Node.js' }
-        response.writeHead(200, 'resolve ok', Object.assign(base, headers))
-        response.end(body)
-      })
-
+      this.composeMiddleware(context)
+          .then(() => {
+            let { body, headers } = context.resCtx
+            let base = { 'X-powered-by': 'Node.js' }
+            response.writeHead(200, 'resolve ok', Object.assign(base, headers))
+            response.end(body)
+          })
     }
   }
 }
