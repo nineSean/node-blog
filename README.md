@@ -50,3 +50,14 @@ git checkout step-5
 npm i
 npm start
 ```
+
+## step-6 模板引擎与webpack2
+> 引入ejs中间件处理服务器端渲染
+
+> 引入webpack2构建前端代码
+
+```
+git checkout step-6
+npm i
+npm start
+```
