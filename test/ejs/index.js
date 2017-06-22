@@ -3,19 +3,15 @@ const ejs = require('ejs');
 
 console.log(ejs)
 
-const html = `hellow <%- world%>`
+const html = `hellow <%- world %> <%- foo %>`
 
-// ==> (world)=>'hello'+world
+// ==> (locals)=>'hello'+locals.world
 
 //将字符串转换成function
 const f1 = ejs.compile(html)
-
-const world = 'xxx'
-
-console.log('-----', f1)
-
 const finalStr = f1({
-  world: world
+  world: 'xxx',
+  foo: '!'
 })
 
 console.log('---', finalStr)
