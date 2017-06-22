@@ -23,7 +23,7 @@ const assert = require('assert')
 // let buf3 =Buffer.from([0xe7]);
 // let buf4 =Buffer.from([0xaa]);
 // let buf5 =Buffer.from([0x97]);
-// //concat的作用是讲buffer拼接成大的buffer
+// //concat的作用是将buffer拼接成大的buffer
 // console.log(Buffer.concat([buf3,buf4,buf5],3).toString('utf8'))
 
 
@@ -38,6 +38,8 @@ let out = [];
 data.on('data',(chunk)=>{
 	out.push(chunk)
 }).on('end',()=>{
+    // console.log(out)
+    // console.log(Buffer.from(out))
     console.log(Buffer.concat(out).toString())
 });
 
