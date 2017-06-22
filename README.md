@@ -38,3 +38,15 @@ git checkout step-4
 npm i
 npm start
 ```
+
+## step-5 构建架构形式的代码风格
+> 设计express和koa风格api，模拟`use` `callback`方法
+
+> 将request和response抽象为一个对象
+
+> Buffer了解
+```
+git checkout step-5
+npm i
+npm start
+```
