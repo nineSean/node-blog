@@ -10,6 +10,7 @@
 const ejs = require('ejs')
 const fs = require('fs')
 const path = require('path')
+const mime = require('mime')
 module.exports = (ctx) => {
   let { req, resCtx } = ctx
   let { url } = req
@@ -27,7 +28,10 @@ module.exports = (ctx) => {
       if (urlMap[url]) {
         let { viewName } = urlMap[url]
         let htmlPath = path.resolve(viewPath, viewName)
-        let tempStr = fs.readFileSync(htmlPath,'utf8')
+        resCtx.headers = Object.assign(resCtx.headers, {
+          'Content-Type': mime.lookup(htmlPath)
+        })
+        let tempStr = fs.readFileSync(htmlPath, 'utf8')
         let render = ejs.compile(tempStr, {
           compileDebug: true
         })
