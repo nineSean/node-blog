@@ -1,4 +1,4 @@
-##  Buffer和构建Promise 中间件
+## 第五课   Buffer和构建Promise 中间件
 
 - 知识回顾
 
@@ -24,7 +24,7 @@
 ```
 
 
-#### 内容概要
+#### 第五课内容概要
 ------------------------------------------------
 
 1. 设计expres和koa的api风格,模拟`use` `callback`方法。
@@ -33,7 +33,7 @@
 
 3. Buffer讲解
 
-代码的改造效果
+第五课的代码的改造效果
 
 ```js
     // index.js
@@ -70,7 +70,7 @@
     });
     let out = []
     data.on('data',(chunk)=>{
-        out.push(chunk) 
+        out.push(chunk)
     }).on('end',()=>{
         let l = out.length;
         console.log(Buffer.concat(out,l).toString())
