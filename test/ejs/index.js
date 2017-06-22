@@ -3,15 +3,23 @@ const ejs = require('ejs');
 
 console.log(ejs)
 
-const html = `hellow <%- world %> <%- foo %>`
+const html = `hello
+<% if(world.match('jjj')){ %>
+<%- world %>
+<% } %>
+<%- include('test') %>
+<%= foo %>`
 
 // ==> (locals)=>'hello'+locals.world
 
 //将字符串转换成function
-const f1 = ejs.compile(html)
+const f1 = ejs.compile(html, {
+  filename: path.resolve(__filename),
+  compileDebug: true,
+})
 const finalStr = f1({
   world: 'xxx',
-  foo: '!'
+  foo: '<script>alert(1)</script>'
 })
 
 console.log('---', finalStr)
@@ -21,7 +29,7 @@ console.log('---', finalStr)
 //     <% if(world.match('jjj')){ %>
 //     <%- world %>
 //     <% }%>
-//     <%- include('./test') %>
+//     <%- include('./test') %> // ==> fs.readFileSync('./test')
 //     <%= hhh %>`;
 
 // //==> (locals)=>'hello'+locals.world
